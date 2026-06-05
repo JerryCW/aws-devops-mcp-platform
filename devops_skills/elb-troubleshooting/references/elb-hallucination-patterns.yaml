@@ -1,0 +1,12 @@
+# =============================================================================
+# ELB "Looks Real but Wrong" Hallucination Patterns
+# =============================================================================
+
+patterns:
+
+  - id: P1-nlb-security-groups
+    trigger_words: ["NLB security group", "NLB SG", "security group NLB"]
+    hallucination_risk: CRITICAL
+    why_llms_get_this_wrong: >
+      LLMs assume NLB has security groups like ALB. NLB does not have
+      security groups by default. Targets must all
