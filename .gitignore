@@ -32,3 +32,6 @@ servers.json
 
 # 历史归档(旧 V2/V3 代码,含真实环境配置,不入仓库)
 archive/
+
+# Kiro 工作区配置(specs / steering / settings,不入仓库)
+.kiro/
