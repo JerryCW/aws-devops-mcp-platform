@@ -1,0 +1,19 @@
+# RDS PostgreSQL 巡检容器依赖。
+# 锁版本范围,不写死 == 是因为 mcp / starlette / uvicorn 是间接依赖,
+# 主依赖只锁 mcp 大版本。
+
+# MCP SDK(与 project-conventions.md 锁的版本一致)
+mcp ~= 1.27
+
+# PostgreSQL 驱动:psycopg 3 (binary distribution,自带预编译 libpq)
+# - psycopg ~= 3.2(2024+ 稳定版,Python 3.13 完全兼容)
+# - [binary] extra 提供预编译 wheel,arm64/linux 安装无需 build-essential
+# - 不用 psycopg2 / psycopg2-binary(上一代 API 设计,arm64 wheel 历史问题多)
+psycopg[binary] ~= 3.2
+
+# AWS SDK(每次 tool call 现拉 Secret)
+boto3 >= 1.34
+
+# 底层 ASGI 显式声明(让 pip resolver 给一个明确版本,不靠 mcp 间接依赖隐式锁)
+starlette >= 0.40, < 1.0
+uvicorn >= 0.30, < 1.0

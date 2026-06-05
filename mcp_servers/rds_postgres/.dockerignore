@@ -1,0 +1,27 @@
+# 容器构建忽略清单。
+# 多重防御 — 阻止任何凭据 / 缓存 / 仓库元数据进镜像(SHALL NOT #13)。
+
+# 凭据 / 配置(必排)
+.env
+.env.*
+.aws/
+
+# Python 缓存
+__pycache__/
+*.pyc
+*.pyo
+
+# 仓库元数据(避免 git history 进镜像)
+.git/
+.gitignore
+.gitkeep
+
+# 项目元数据
+.kiro/
+
+# CDK 产物
+cdk.out/
+
+# 虚拟环境
+.venv/
+venv/

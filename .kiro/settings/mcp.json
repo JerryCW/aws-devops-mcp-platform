@@ -1,0 +1,17 @@
+{
+  "mcpServers": {
+    "agentcore-spec0": {
+      "command": "/Users/wangcjer/Repository/aws-devops-mcp-platform/.venv/bin/python",
+      "args": [
+        "/Users/wangcjer/Repository/aws-devops-mcp-platform/scripts/kiro_mcp_bridge.py"
+      ],
+      "env": {
+        "SPEC0_STACK_NAME": "McpInspectSpec0Stack",
+        "SPEC0_REGION": "us-east-1"
+      },
+      "cwd": "/Users/wangcjer/Repository/aws-devops-mcp-platform",
+      "disabled": false,
+      "autoApprove": ["hello_world"]
+    }
+  }
+}

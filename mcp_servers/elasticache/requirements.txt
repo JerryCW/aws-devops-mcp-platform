@@ -1,0 +1,14 @@
+# ElastiCache (Redis/Valkey) 巡检容器依赖。
+# Redis 7 / Valkey 8 协议兼容,redis-py 客户端通用。
+
+mcp ~= 1.27
+
+# Redis 客户端 — 兼容 ElastiCache for Redis / for Valkey
+redis ~= 5.2
+
+# AWS SDK(ACL/AUTH Secret 拉取)
+boto3 >= 1.34
+
+# 显式声明 ASGI 底层
+starlette >= 0.40, < 1.0
+uvicorn >= 0.30, < 1.0

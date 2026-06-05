@@ -1,0 +1,47 @@
+{
+  "_comment": "复制本文件为 servers.json,把 <REPLACE_ME_*> 改成你环境的实际值。servers.json 已在 .gitignore。",
+
+  "runtime": {
+    "vpcId": "<REPLACE_ME_RUNTIME_VPC_ID>",
+    "subnetIds": ["<REPLACE_ME_PRIVATE_SUBNET_ID_1>", "<REPLACE_ME_PRIVATE_SUBNET_ID_2>"],
+    "availabilityZones": ["us-east-1a", "us-east-1c"]
+  },
+
+  "servers": {
+    "rdspostgres": {
+      "enabled": true,
+      "runtimeName": "devops_mcp_rds_postgres",
+      "sourceDir": "mcp_servers/rds_postgres",
+      "secretName": "aws-devops-mcp/rds-postgres/devops-readonly",
+      "secretUsername": "mcp_devops_ro",
+      "egressCidr": "<REPLACE_ME_PG_VPC_CIDR>",
+      "egressPort": 5432,
+      "extraEnv": { "DB_PORT": "5432" },
+      "description": "Aurora/RDS PostgreSQL inspect (28 tools, IAM SigV4, endpoint per-call)"
+    },
+
+    "elasticache": {
+      "enabled": true,
+      "runtimeName": "devops_mcp_elasticache",
+      "sourceDir": "mcp_servers/elasticache",
+      "secretName": "aws-devops-mcp/elasticache/devops-readonly",
+      "secretUsername": "mcp_devops_ro",
+      "egressCidr": "<REPLACE_ME_ELASTICACHE_VPC_CIDR>",
+      "egressPort": 6379,
+      "extraEnv": { "REDIS_PORT": "6379", "REDIS_USE_TLS": "auto" },
+      "description": "ElastiCache for Redis/Valkey inspect (13 tools, IAM SigV4, endpoint per-call)"
+    },
+
+    "rdsmysql": {
+      "enabled": true,
+      "runtimeName": "devops_mcp_rds_mysql",
+      "sourceDir": "mcp_servers/rds_mysql",
+      "secretName": "aws-devops-mcp/rds-mysql/devops-readonly",
+      "secretUsername": "mcp_devops_ro",
+      "egressCidr": "<REPLACE_ME_MYSQL_VPC_CIDR>",
+      "egressPort": 3306,
+      "extraEnv": { "DB_PORT": "3306" },
+      "description": "RDS/Aurora MySQL inspect (18 tools, IAM SigV4, endpoint per-call)"
+    }
+  }
+}

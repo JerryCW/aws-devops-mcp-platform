@@ -1,0 +1,18 @@
+# MySQL 容器构建忽略清单(SHALL NOT #13)。
+
+.env
+.env.*
+.aws/
+
+__pycache__/
+*.pyc
+*.pyo
+
+.git/
+.gitignore
+.gitkeep
+
+.kiro/
+cdk.out/
+.venv/
+venv/

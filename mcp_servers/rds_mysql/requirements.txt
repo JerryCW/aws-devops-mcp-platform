@@ -1,0 +1,14 @@
+# RDS / Aurora MySQL 巡检容器依赖。
+
+mcp ~= 1.27
+
+# MySQL 驱动:PyMySQL 纯 Python,无 C 扩展,arm64/linux 装包快、无编译依赖。
+# 不用 mysqlclient(需 libmysqlclient-dev + 编译)。
+PyMySQL ~= 1.1
+
+# AWS SDK(每次 tool call 现拉 Secret)
+boto3 >= 1.34
+
+# 底层 ASGI 显式声明
+starlette >= 0.40, < 1.0
+uvicorn >= 0.30, < 1.0

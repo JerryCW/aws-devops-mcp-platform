@@ -1,0 +1,34 @@
+# CDK
+cdk.out/
+cdk.context.json
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+*.egg
+
+# 虚拟环境
+.venv/
+venv/
+env/
+
+# 编辑器 / 系统
+.DS_Store
+.idea/
+.vscode/
+*.swp
+
+# 凭据 / 配置
+.env
+.env.*
+!.env.example
+.aws/
+
+# 客户环境配置(每环境一份,不入仓库;提交的是 servers.json.example)
+servers.json
+!servers.json.example
+
+# 历史归档(旧 V2/V3 代码,含真实环境配置,不入仓库)
+archive/
