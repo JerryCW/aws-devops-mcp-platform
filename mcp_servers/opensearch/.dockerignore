@@ -1,0 +1,22 @@
+# OpenSearch 容器构建忽略清单(SHALL NOT #13)。
+
+.env
+.env.*
+.aws/
+
+__pycache__/
+*.pyc
+*.pyo
+
+.git/
+.gitignore
+.gitkeep
+
+.kiro/
+cdk.out/
+.venv/
+venv/
+
+# 迁移参考文件,不进镜像
+_pyproject_ref.toml
+_UPSTREAM_README.md

@@ -42,6 +42,18 @@
       "egressPort": 3306,
       "extraEnv": { "DB_PORT": "3306" },
       "description": "RDS/Aurora MySQL inspect (18 tools, IAM SigV4, endpoint per-call)"
+    },
+
+    "opensearch": {
+      "enabled": true,
+      "runtimeName": "devops_mcp_opensearch",
+      "sourceDir": "mcp_servers/opensearch",
+      "secretName": "aws-devops-mcp/opensearch/devops-readonly",
+      "secretUsername": "mcp_devops_ro",
+      "egressCidr": "<REPLACE_ME_OPENSEARCH_VPC_CIDR>",
+      "egressPort": 443,
+      "extraEnv": { "OPENSEARCH_SSL_VERIFY": "true" },
+      "description": "OpenSearch inspect (migrated from opensearch-project, basic auth, endpoint per-call)"
     }
   }
 }
