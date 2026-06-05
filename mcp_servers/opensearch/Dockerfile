@@ -16,6 +16,8 @@ COPY mcp_server_opensearch /app/mcp_server_opensearch
 COPY opensearch /app/opensearch
 COPY tools /app/tools
 COPY entrypoint.py /app/entrypoint.py
+# Apache-2.0 合规:license 副本 + 来源/修改说明随镜像分发(upstream 迁移代码)
+COPY LICENSE.txt NOTICE.txt /app/
 
 # AgentCore Runtime MCP 协议契约硬编码:port=8000,mount=/mcp(不是 8080,SHALL NOT #17)
 EXPOSE 8000

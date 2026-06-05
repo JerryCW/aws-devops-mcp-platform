@@ -183,11 +183,32 @@ bash scripts/destroy.sh DevopsMcp-rdspostgres
 │   ├── gateway_stack.py         # 第一步:Gateway(无 target)
 │   └── target_stack.py          # 第二步:通用 target stack(配置驱动)
 ├── mcp_servers/
-│   └── rds_postgres/            # PG 巡检容器(20 tool,endpoint 必传)
+│   ├── rds_postgres/            # PG 巡检容器(28 tool,endpoint 必传,自研)
+│   ├── rds_mysql/               # MySQL 巡检容器(18 tool,自研)
+│   ├── elasticache/             # ElastiCache 巡检容器(13 tool,自研)
+│   └── opensearch/              # OpenSearch 巡检+日志查询(19 tool)
+│                                #   ⚠ 迁移自 opensearch-project/opensearch-mcp-server-py
+│                                #   (Apache-2.0,非原创,见该目录 LICENSE.txt / NOTICE.txt)
 ├── scripts/
 │   ├── deploy_gateway.sh        # 第一步一键部署
 │   ├── verify_gateway.py        # Gateway SigV4 链路验证
 │   ├── verify_pg.py             # PG target 验证
+│   ├── verify_mysql.py          # MySQL target 验证
+│   ├── verify_elasticache.py    # ElastiCache target 验证
+│   ├── verify_opensearch.py     # OpenSearch target 验证
 │   └── destroy.sh
 └── archive/                     # 历史代码(旧根 / V2 / V3),仅存档参考
 ```
+
+## 第三方代码来源(Attribution)
+
+本项目大部分 MCP server 为自研,但 **`mcp_servers/opensearch/` 的核心代码迁移自第三方
+开源项目**,非本项目原创:
+
+| 目录 | 来源 | 许可 |
+|------|------|------|
+| `mcp_servers/opensearch/`(`mcp_server_opensearch/` `opensearch/` `tools/`)| [opensearch-project/opensearch-mcp-server-py](https://github.com/opensearch-project/opensearch-mcp-server-py) | Apache-2.0 |
+
+该目录的 `entrypoint.py` / `Dockerfile` / `requirements.txt` 等为本项目原创的适配层
+(接 AgentCore Runtime + Secrets Manager)。详见 `mcp_servers/opensearch/README.md`、
+`LICENSE.txt`、`NOTICE.txt`。

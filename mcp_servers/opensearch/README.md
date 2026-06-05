@@ -3,9 +3,20 @@
 让 DevOps Agent 能查询、分析 OpenSearch / Amazon OpenSearch Service 集群(索引、映射、
 查询 DSL、分片、集群健康等),用于日志检索与集群排障。
 
-> **迁移自** [opensearch-project/opensearch-mcp-server-py](https://github.com/opensearch-project/opensearch-mcp-server-py)(Apache-2.0)。
-> 本目录保留 upstream 代码不改,仅外挂一层 `entrypoint.py` 适配本框架的
-> Secrets Manager 凭据模型 + AgentCore Runtime 容器契约(8000/mcp/stateless)。
+> ## ⚠️ 代码来源声明(Attribution)
+>
+> **本目录的核心代码不是本项目原创,而是迁移(借鉴)自第三方开源项目:**
+>
+> - **上游项目**:[opensearch-project/opensearch-mcp-server-py](https://github.com/opensearch-project/opensearch-mcp-server-py)
+> - **版权**:Copyright OpenSearch Contributors
+> - **许可**:Apache License 2.0
+>
+> **哪些是 upstream 的、哪些是本项目写的:**
+> - `mcp_server_opensearch/`、`opensearch/`、`tools/` —— **upstream 原样代码,未改核心逻辑**(保留原版权头)
+> - `entrypoint.py`、`Dockerfile`、`requirements.txt`、`.dockerignore`、`README.md` —— **本项目原创的适配层**(为接 AgentCore Runtime + Secrets Manager 凭据)
+>
+> 完整 license 见同目录 [`LICENSE.txt`](./LICENSE.txt),来源与修改说明见 [`NOTICE.txt`](./NOTICE.txt)。
+> 遵循 Apache-2.0 第 4 条:保留版权声明、附 license 副本、NOTICE 标注修改。
 
 ## 与其它 server 的设计差异(先看这个)
 

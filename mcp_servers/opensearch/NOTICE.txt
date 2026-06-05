@@ -1,0 +1,39 @@
+AWS DevOps MCP Platform — OpenSearch MCP Server
+================================================
+
+本目录(mcp_servers/opensearch/)的大部分代码并非本项目原创,而是迁移(借鉴)自
+上游开源项目,遵循 Apache License 2.0。
+
+上游来源(Upstream Source)
+--------------------------
+  项目:  opensearch-mcp-server-py
+  组织:  OpenSearch Project
+  仓库:  https://github.com/opensearch-project/opensearch-mcp-server-py
+  许可:  Apache License 2.0
+  版权:  Copyright OpenSearch Contributors
+         OpenSearch (https://opensearch.org/)
+
+迁移自 upstream 的文件(未改动核心逻辑,保留原版权头)
+---------------------------------------------------
+  mcp_server_opensearch/   ← upstream 原样
+  opensearch/              ← upstream 原样
+  tools/                   ← upstream 原样
+
+本项目的新增/修改(Modifications by AWS DevOps MCP Platform)
+-----------------------------------------------------------
+为适配 AWS Bedrock AgentCore Runtime 容器契约,本项目新增了以下文件
+(不属于 upstream,为本项目原创的适配层):
+
+  entrypoint.py        — 容器引导层:
+                           1) 从 AWS Secrets Manager 拉取 basic auth 凭据注入环境变量
+                           2) force-basic-auth:中和调用方注入的 aws_iam_arn/profile/
+                              serverless 认证参数,锁死走 basic auth
+  Dockerfile           — linux/arm64 容器,监听 0.0.0.0:8000 /mcp(AgentCore 契约)
+  requirements.txt     — 依赖清单(版本沿用 upstream pyproject.toml)
+  .dockerignore        — 构建忽略清单
+  README.md            — 本项目使用文档
+
+upstream 源码(mcp_server_opensearch/ opensearch/ tools/)**保持不改**;
+所有本项目特有的适配逻辑均外挂在上述新增文件中。
+
+完整 Apache License 2.0 全文见同目录 LICENSE.txt。
